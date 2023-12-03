@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 import WeatherTable from './Components/WeatherTable';
+import NewLocation from './Components/NewLocation';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,6 +39,10 @@ function App() {
     setSelectedLocationWeather(dataJson);
   }
 
+  const handleAddLocation = (newLocation) => {
+    setLocations((currentLocations) => [...currentLocations, newLocation]);
+  };
+
   return (
     <div className="App">
       <header className="App-header" style={{ display: 'flex', flexDirection: 'row', gap: 24, padding: 24 }}>
@@ -49,17 +54,14 @@ function App() {
             </div>
           ))}
           <h3>New location</h3>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <input placeholder='Name' />
-            <input placeholder='Longitude' />
-            <input placeholder='Latitude' />
-            <button>Add location</button>
+          <div>
+           <NewLocation onAddLocation= {handleAddLocation} />
           </div>
         </div>
         <div style={{ textAlign: 'left' }}>
           {selectedLocation ? (
             <>
-              <h3>Weather forecast {selectedLocation.name}</h3>
+              <h3>Weather forecast in {selectedLocation.name}</h3>
               {isLoading ?
                 'Laen...' :
                 <WeatherTable weather={selectedLocationWeather} />}

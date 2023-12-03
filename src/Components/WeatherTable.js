@@ -1,3 +1,6 @@
+
+
+
 const convertKmphToMps = (speedKmph) => {
   const speedMps = speedKmph * 1000 / (60 * 60);
   return speedMps.toFixed(1);
@@ -11,7 +14,7 @@ const WeatherTable = ({ weather }) => (
   <table cellSpacing={24}>
       <thead>
           <th>Date</th>
-          <th>Sunrise/sunset</th>
+          <th>Sunrise / Sunset</th>
           <th>Temp. min/max</th>
           <th>Precipitation</th>
           <th>Max wind</th>
